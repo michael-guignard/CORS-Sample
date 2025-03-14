@@ -1,0 +1,18 @@
+@startuml
+
+participant "Victim" as V
+participant "Browser" as B
+participant "Malicious Site (evil.com)" as M
+participant "Target Server (bank.com)" as T
+
+V -> B: Visit evil.com
+B -> M: Request malicious page
+M -> B: Serve attack script
+B -> T: Unwanted request (e.g., transfer funds)
+note right of B
+  Browser automatically includes cookies/session
+end note
+T -> B: Process request as authenticated user
+T -> V: Transaction completed (unaware of attack)
+
+@enduml
